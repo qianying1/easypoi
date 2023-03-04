@@ -17,6 +17,7 @@ package cn.afterturn.easypoi.excel.entity;
 
 import cn.afterturn.easypoi.handler.inter.IExcelVerifyHandler;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * 导入参数设置
@@ -26,6 +27,7 @@ import lombok.Data;
  * @version 1.0
  */
 @Data
+@Accessors(chain = true)
 public class ImportParams extends ExcelBaseParams {
 
     public static final String SAVE_URL = "/excel/upload/excelUpload";
