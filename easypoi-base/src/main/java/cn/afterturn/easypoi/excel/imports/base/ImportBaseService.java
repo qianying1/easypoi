@@ -269,7 +269,7 @@ public class ImportBaseService {
         }
         if (entity.getMethods() != null) {
             setFieldBySomeMethod(entity.getMethods(), object, value);
-        } else {
+        } else if (entity.getMethod() != null) {
             entity.getMethod().invoke(object, value);
         }
     }
