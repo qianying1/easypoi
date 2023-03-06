@@ -213,7 +213,7 @@ public class CellValueService {
         ExcelImportEntity entity        = excelParams.get(titleString);
         String            classFullName = "class java.lang.Object";
         Class             clazz         = null;
-        if (!(object instanceof Map) && entity.getMethod() != null && entity.getMethods() != null) {
+        if (!(object instanceof Map) && (entity.getMethod() != null || entity.getMethods() != null)) {
             Method setMethod = entity.getMethods() != null && entity.getMethods().size() > 0
                     ? entity.getMethods().get(entity.getMethods().size() - 1) : entity.getMethod();
             Type[] ts = setMethod.getGenericParameterTypes();
