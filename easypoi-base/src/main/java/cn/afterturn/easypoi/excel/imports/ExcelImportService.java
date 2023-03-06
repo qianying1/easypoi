@@ -133,7 +133,7 @@ public class ExcelImportService extends ImportBaseService {
      */
     private String getKeyValue(Cell cell) {
         Object obj = PoiCellUtil.getCellValue(cell);
-        return obj == null ? null : obj.toString().trim();
+        return obj == null ? "" : obj.toString().trim();
     }
 
     /**
