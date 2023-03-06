@@ -30,6 +30,7 @@ import cn.afterturn.easypoi.util.PoiCellUtil;
 import cn.afterturn.easypoi.util.PoiPublicUtil;
 import cn.afterturn.easypoi.util.PoiReflectorUtil;
 import cn.afterturn.easypoi.util.PoiValidationUtil;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -168,6 +169,9 @@ public class ExcelImportService extends ImportBaseService {
                 targetId = etarget.value();
             }
             getAllExcelField(targetId, fileds, excelParams, excelCollection, pojoClass, null, null);
+            if (CollectionUtils.isNotEmpty(params.getAppendableImportEntityList())) {
+                appendExcelField(excelParams, params.getAppendableImportEntityList());
+            }
         }
         Iterator<Row> rows = sheet.rowIterator();
         for (int j = 0; j < params.getTitleRows(); j++) {
@@ -280,6 +284,18 @@ public class ExcelImportService extends ImportBaseService {
             }
         }
         return collection;
+    }
+
+    /**
+     * 追加导入的动态字段
+     *
+     * @param excelParams
+     * @param importEntities
+     */
+    private void appendExcelField(Map<String, ExcelImportEntity> excelParams, List<ExcelImportEntity> importEntities) {
+        importEntities.forEach(excelImportEntity -> {
+            excelParams.put(excelImportEntity.getName(), excelImportEntity);
+        });
     }
 
     /**

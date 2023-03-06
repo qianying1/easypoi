@@ -15,9 +15,12 @@
  */
 package cn.afterturn.easypoi.excel.entity;
 
+import cn.afterturn.easypoi.excel.entity.params.ExcelImportEntity;
 import cn.afterturn.easypoi.handler.inter.IExcelVerifyHandler;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.util.List;
 
 /**
  * 导入参数设置
@@ -117,4 +120,9 @@ public class ImportParams extends ExcelBaseParams {
      * 最小截取大小
      */
     private Integer             critical = 1000;
+
+    /**
+     * 可追加的导入字段
+     */
+    private List<ExcelImportEntity> appendableImportEntityList;
 }
